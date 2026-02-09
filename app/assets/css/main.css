@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-white font-inter antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-bronze text-dark;
+  }
+}
+
+@layer components {
+  .text-gradient-bronze {
+    @apply bg-gradient-to-r from-bronze to-bronze-light bg-clip-text text-transparent;
+  }
+
+  .viewport-frame {
+    @apply fixed inset-0 pointer-events-none z-50;
+    box-shadow: inset 0 0 100px 20px rgba(59, 130, 246, 0.15),
+                inset 0 0 200px 40px rgba(59, 130, 246, 0.08);
+  }
+
+  .grain-overlay {
+    @apply fixed inset-0 pointer-events-none z-40;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+  }
+
+  .section-light {
+    @apply bg-light text-dark;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: multiply;
+  }
+
+  .section-dark {
+    @apply bg-dark text-white;
+  }
+
+  .heading-decorative {
+    @apply font-cinzel-decorative text-4xl md:text-6xl lg:text-7xl tracking-ultra-wide uppercase;
+  }
+
+  .heading-section {
+    @apply font-cinzel text-2xl md:text-3xl tracking-widest uppercase text-bronze;
+  }
+
+  .body-text {
+    @apply font-inter text-base md:text-lg text-cool-gray leading-relaxed;
+  }
+
+  .link-bronze {
+    @apply text-bronze hover:text-bronze-light transition-colors duration-300 underline-offset-4 hover:underline;
+  }
+
+  .card-glass {
+    @apply bg-dark-secondary/50 backdrop-blur-sm border border-white/10 rounded-lg;
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 font-cinzel tracking-widest uppercase text-sm
+           border border-bronze text-bronze
+           hover:bg-bronze hover:text-dark
+           transition-all duration-300 ease-out;
+  }
+
+  .divider-bronze {
+    @apply w-24 h-px bg-bronze mx-auto;
+  }
+
+  .timeline-line {
+    @apply absolute left-1/2 top-0 bottom-0 w-px bg-bronze/30 -translate-x-1/2;
+  }
+
+  .timeline-dot {
+    @apply w-4 h-4 rounded-full bg-bronze border-4 border-light;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(205, 127, 50, 0.5);
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-600 {
+    animation-delay: 600ms;
+  }
+}
