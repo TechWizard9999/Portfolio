@@ -20,7 +20,7 @@
             transition: 'all 0.8s ease'
           }"
         >
-          CHRONICLES
+          EXPERIENCE
         </h2>
       </div>
 
@@ -185,6 +185,27 @@ onMounted(() => {
 
 const experiences = [
   {
+    title: 'Software Engineer · Full-time',
+    company: 'Microsoft',
+    location: 'Noida, India',
+    date: 'Aug 2026 — Present',
+    points: [
+      'Joined Microsoft as a full-time engineer in August 2026.'
+    ],
+    tech: []
+  },
+  {
+    title: 'Software Engineering Intern',
+    company: 'ACKO General Insurance',
+    location: 'Bangalore, India',
+    date: 'Dec 2025 — Jul 2026',
+    points: [
+      'Implemented <strong>rate limiting</strong> at both <strong>application level</strong> and <strong>KONG Gateway</strong> to optimize the claims processing pipeline, prevent API abuse, and improve system reliability.',
+      'Worked on the <strong>customer claims page</strong>, fixing production bugs and designing <strong>state machines</strong> for insurance workflows to automate approval-stage transitions and improve end-user experience.'
+    ],
+    tech: ['Node.js', 'KONG', 'State Machines', 'React']
+  },
+  {
     title: 'Software Engineering Intern',
     company: 'Microsoft',
     location: 'Noida, India',
@@ -195,17 +216,6 @@ const experiences = [
     ],
     tech: ['Azure', 'C#', '.NET', 'React', 'TypeScript']
   },
-  {
-    title: 'Software Engineering Intern',
-    company: 'ACKO General Insurance',
-    location: 'Bangalore, India',
-    date: 'Dec 2025 — Present',
-    points: [
-      'Implemented <strong>rate limiting</strong> at both <strong>application level</strong> and <strong>KONG Gateway</strong> to optimize the claims processing pipeline, prevent API abuse, and improve system reliability.',
-      'Worked on the <strong>customer claims page</strong>, fixing production bugs and designing <strong>state machines</strong> for insurance workflows to automate approval-stage transitions and improve end-user experience.'
-    ],
-    tech: ['Node.js', 'KONG', 'State Machines', 'React']
-  }
 ]
 </script>
 

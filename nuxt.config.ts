@@ -25,9 +25,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Roopesh S | Software Engineer',
+      title: 'Roopesh S | Software Engineer at Microsoft',
       meta: [
-        { name: 'description', content: 'Software Engineer. Building scalable applications.' },
+        { name: 'description', content: 'Roopesh S is a software engineer at Microsoft building developer tools, automation, and scalable software.' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { charset: 'utf-8' }
       ],
@@ -49,4 +49,3 @@ export default defineNuxtConfig({
     compressPublicAssets: true
   }
 })
-

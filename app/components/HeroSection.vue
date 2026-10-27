@@ -12,7 +12,7 @@
       <!-- Decorative subtitle with letter animation -->
       <p class="font-cinzel text-xs md:text-sm tracking-super-wide text-cool-gray mb-8 opacity-70">
         <span 
-          v-for="(letter, index) in 'THE INNER'.split('')"
+          v-for="(letter, index) in 'SOFTWARE ENGINEER'.split('')"
           :key="'inner-' + index"
           class="inline-block"
           :style="{ 
@@ -27,7 +27,7 @@
       <!-- Main Title with letter animation -->
       <h2 class="heading-decorative text-white mb-4">
         <span 
-          v-for="(letter, index) in 'CITADEL'.split('')"
+          v-for="(letter, index) in 'MICROSOFT'.split('')"
           :key="'citadel-' + index"
           class="inline-block"
           :style="{ 
@@ -72,7 +72,7 @@
           transition: 'all 0.6s ease 2s'
         }"
       >
-        Software Engineer
+        Software Engineer · Full-time since August 2026
       </p>
 
       <!-- Social Links -->

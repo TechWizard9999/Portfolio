@@ -35,6 +35,6 @@ const onLoaded = () => {
 
 useHead({
   titleTemplate: '%s',
-  title: 'Roopesh S | Software Engineer'
+  title: 'Roopesh S | Software Engineer at Microsoft'
 })
 </script>
