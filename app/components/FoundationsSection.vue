@@ -1,20 +1,14 @@
 <template>
   <section id="skills" class="section-dark py-24 relative">
-    <!-- Greek Key Border -->
-    <div class="greek-key-border"></div>
-
     <div class="max-w-7xl mx-auto px-6">
       <!-- Section Header -->
       <div class="text-center mb-8">
-        <div class="inline-block mb-4">
-          <svg class="w-16 h-10 mx-auto text-white/40" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M8 36h48M12 36V16M52 36V16M8 16h48M12 16L32 4L52 16"/>
-            <path d="M24 36V20M40 36V20"/>
-          </svg>
+        <div class="mb-4 inline-flex h-10 items-center justify-center rounded-lg border border-accent/20 bg-accent/5 px-4 font-mono text-sm text-accent">
+          &lt;/&gt;
         </div>
         <h2 
           ref="foundationsRef"
-          class="font-cinzel-decorative text-4xl md:text-5xl tracking-wider text-white mb-8"
+          class="mb-8 font-display text-4xl font-semibold tracking-tight text-white md:text-5xl"
           :style="{ 
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -23,8 +17,8 @@
         >
           SKILLS
         </h2>
-        <p class="text-cool-gray text-sm max-w-2xl mx-auto italic">
-          "The strength of the structure lies in the integrity of its base. Mastery is but logic applied with discipline."
+        <p class="mx-auto max-w-2xl text-sm text-cool-gray">
+          A practical toolkit for building products, backend services, and AI-powered workflows.
         </p>
       </div>
 
@@ -39,14 +33,14 @@
             transition: 'all 0.6s ease 200ms'
           }"
         >
-          <h3 class="font-cinzel text-lg tracking-[0.2em] text-bronze uppercase mb-6 border-b border-white/10 pb-3">Programming Languages</h3>
+          <h3 class="mb-6 border-b border-white/10 pb-3 font-display text-lg font-semibold uppercase tracking-wide text-accent">Programming Languages</h3>
           <div class="flex flex-wrap gap-3">
             <span class="skill-tag">Java</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Python</span>
             <span class="skill-tag">C++</span>
-            <span class="skill-tag">C</span>
-            <span class="skill-tag">Solidity</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Rust</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript</span>
           </div>
         </div>
 
@@ -58,15 +52,14 @@
             transition: 'all 0.6s ease 400ms'
           }"
         >
-          <h3 class="font-cinzel text-lg tracking-[0.2em] text-bronze uppercase mb-6 border-b border-white/10 pb-3">Backend & Web</h3>
+          <h3 class="mb-6 border-b border-white/10 pb-3 font-display text-lg font-semibold uppercase tracking-wide text-accent">Backend & Frontend</h3>
           <div class="flex flex-wrap gap-3">
-            <span class="skill-tag">Spring Boot</span>
             <span class="skill-tag">Node.js</span>
-            <span class="skill-tag">Express.js</span>
+            <span class="skill-tag">ExpressJS</span>
+            <span class="skill-tag">Java (Spring Boot)</span>
+            <span class="skill-tag">ReactJS</span>
+            <span class="skill-tag">Redux</span>
             <span class="skill-tag">Next.js</span>
-            <span class="skill-tag">React</span>
-            <span class="skill-tag">GraphQL</span>
-            <span class="skill-tag">Kafka</span>
           </div>
         </div>
 
@@ -78,42 +71,53 @@
             transition: 'all 0.6s ease 600ms'
           }"
         >
-          <h3 class="font-cinzel text-lg tracking-[0.2em] text-bronze uppercase mb-6 border-b border-white/10 pb-3">Databases & DevOps</h3>
+          <h3 class="mb-6 border-b border-white/10 pb-3 font-display text-lg font-semibold uppercase tracking-wide text-accent">Databases & Cache</h3>
           <div class="flex flex-wrap gap-3">
             <span class="skill-tag">MongoDB</span>
             <span class="skill-tag">MySQL</span>
             <span class="skill-tag">Redis</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Kubernetes</span>
-            <span class="skill-tag">Linux</span>
           </div>
         </div>
 
-        <!-- Blockchain & ML -->
-        <div 
+        <!-- AI & Agentic Workflows -->
+        <div
           :style="{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 0.6s ease 800ms'
           }"
         >
-          <h3 class="font-cinzel text-lg tracking-[0.2em] text-bronze uppercase mb-6 border-b border-white/10 pb-3">Blockchain & ML</h3>
+          <h3 class="mb-6 border-b border-white/10 pb-3 font-display text-lg font-semibold uppercase tracking-wide text-accent">AI & Agentic Workflows</h3>
           <div class="flex flex-wrap gap-3">
-            <span class="skill-tag">Web3.js</span>
-            <span class="skill-tag">Ethers.js</span>
-            <span class="skill-tag">Hardhat</span>
-            <span class="skill-tag">IPFS</span>
-            <span class="skill-tag">Polygon</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">LangGraph</span>
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">AI Agents</span>
+            <span class="skill-tag">LLM Orchestration</span>
+            <span class="skill-tag">Playwright</span>
+          </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div
+          :style="{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.6s ease 1s'
+          }"
+        >
+          <h3 class="mb-6 border-b border-white/10 pb-3 font-display text-lg font-semibold uppercase tracking-wide text-accent">Tools & Platforms</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">KONG Gateway</span>
+            <span class="skill-tag">Kibana</span>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Greek Key Border Bottom -->
-    <div class="greek-key-border-bottom"></div>
   </section>
 </template>
 
@@ -138,40 +142,22 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.greek-key-border,
-.greek-key-border-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 24px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 20px,
-    rgba(205, 127, 50, 0.1) 20px,
-    rgba(205, 127, 50, 0.1) 40px
-  );
-}
-.greek-key-border { top: 0; }
-.greek-key-border-bottom { bottom: 0; }
-
 .skill-tag {
   display: inline-block;
-  padding: 0.6rem 1.2rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(205, 127, 50, 0.3);
-  color: rgba(255, 255, 255, 0.9);
+  padding: 0.55rem 1rem;
+  background: rgba(22, 27, 34, 0.85);
+  border: 1px solid rgba(139, 148, 158, 0.2);
+  border-radius: 9999px;
+  color: #c9d1d9;
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .skill-tag:hover {
-  background: rgba(205, 127, 50, 0.15);
-  border-color: rgba(205, 127, 50, 0.6);
+  border-color: rgba(88, 166, 255, 0.6);
+  color: #79c0ff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.2);
 }
 </style>

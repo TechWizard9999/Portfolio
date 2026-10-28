@@ -1,54 +1,77 @@
 <template>
-  <!-- Custom Cursor -->
   <div
-    ref="cursor"
+    v-if="enabled && hasMoved"
     class="custom-cursor"
-    :style="{ left: cursorX + 'px', top: cursorY + 'px' }"
+    :style="{ transform: `translate3d(${cursorX}px, ${cursorY}px, 0)` }"
+    aria-hidden="true"
   >
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M12 2C12 2 8 8 8 14C8 17.314 9.79 20 12 20C14.21 20 16 17.314 16 14C16 8 12 2 12 2Z" 
-        fill="rgba(255, 255, 255, 0.8)"
-        stroke="rgba(205, 127, 50, 0.5)"
-        stroke-width="1"
-      />
-    </svg>
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const cursor = ref<HTMLElement | null>(null)
+const enabled = ref(false)
+const hasMoved = ref(false)
 const cursorX = ref(0)
 const cursorY = ref(0)
 
-const updateCursor = (e: MouseEvent) => {
-  cursorX.value = e.clientX - 12
-  cursorY.value = e.clientY - 12
+const updateCursor = (event: PointerEvent) => {
+  cursorX.value = event.clientX
+  cursorY.value = event.clientY
+  hasMoved.value = true
 }
 
 onMounted(() => {
-  window.addEventListener('mousemove', updateCursor)
-  document.body.style.cursor = 'none'
+  const hasFinePointer = window.matchMedia('(pointer: fine)').matches
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!hasFinePointer || prefersReducedMotion) {
+    return
+  }
+
+  enabled.value = true
+  document.body.classList.add('has-custom-cursor')
+  window.addEventListener('pointermove', updateCursor, { passive: true })
 })
 
 onUnmounted(() => {
-  window.removeEventListener('mousemove', updateCursor)
-  document.body.style.cursor = 'auto'
+  window.removeEventListener('pointermove', updateCursor)
+  document.body.classList.remove('has-custom-cursor')
 })
 </script>
 
 <style scoped>
 .custom-cursor {
   position: fixed;
-  pointer-events: none;
+  top: 0;
+  left: 0;
   z-index: 9999;
-  transition: transform 0.1s ease-out;
-  mix-blend-mode: difference;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  pointer-events: none;
+  will-change: transform;
 }
 
-.custom-cursor svg {
-  filter: drop-shadow(0 0 4px rgba(205, 127, 50, 0.3));
+.cursor-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(121, 192, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(88, 166, 255, 0.16);
+}
+
+.cursor-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #79c0ff;
+  transform: translate(-50%, -50%);
 }
 </style>

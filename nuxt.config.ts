@@ -9,9 +9,9 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      'Cinzel': [400, 700],
-      'Cinzel Decorative': [400, 700],
-      'Inter': [400, 500, 600]
+      'Space Grotesk': [400, 500, 600, 700],
+      'Inter': [400, 500, 600, 700],
+      'JetBrains Mono': [400, 500, 600]
     },
     display: 'swap',
     preload: true,
@@ -28,6 +28,10 @@ export default defineNuxtConfig({
       title: 'Roopesh S | Software Engineer at Microsoft',
       meta: [
         { name: 'description', content: 'Roopesh S is a software engineer at Microsoft building developer tools, automation, and scalable software.' },
+        { name: 'theme-color', content: '#0d1117' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: 'Roopesh S | Software Engineer at Microsoft' },
+        { property: 'og:description', content: 'Software engineer building developer tools, automation, and scalable software.' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { charset: 'utf-8' }
       ],

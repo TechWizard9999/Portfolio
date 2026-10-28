@@ -1,10 +1,6 @@
 <template>
-  <div class="min-h-screen">
-    <!-- Loading Screen -->
-    <LoadingScreen @loaded="onLoaded" />
-
+  <div class="min-h-screen bg-dark text-white">
     <!-- Global Overlays -->
-    <GrainOverlay />
     <ViewportFrame />
     <CustomCursor />
 
@@ -12,27 +8,19 @@
     <Navigation />
 
     <!-- Main Content -->
-    <main :style="{ opacity: contentLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }">
-      <HeroSection :content-loaded="contentLoaded" />
+    <main>
+      <HeroSection />
       <ChroniclesSection />
       <FoundationsSection />
       <SelectedWorks />
       <PrinciplesSection />
-      <LibrarySection />
+      <OpenSourceSection />
       <ContactSection />
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const contentLoaded = ref(false)
-
-const onLoaded = () => {
-  contentLoaded.value = true
-}
-
 useHead({
   titleTemplate: '%s',
   title: 'Roopesh S | Software Engineer at Microsoft'

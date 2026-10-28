@@ -1,117 +1,85 @@
 <template>
-  <section id="projects" class="section-light py-24 relative">
-    <div class="max-w-6xl mx-auto px-6">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <div class="inline-block mb-4">
-          <!-- Temple Icon -->
-          <svg class="w-16 h-12 mx-auto text-dark/60" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M8 44h48M12 44V20M52 44V20M8 20h48M12 20L32 8L52 20"/>
-            <rect x="20" y="28" width="8" height="16" fill="none"/>
-            <rect x="36" y="28" width="8" height="16" fill="none"/>
-          </svg>
+  <section id="projects" class="section-dark relative py-24 md:py-28">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-12 flex flex-col gap-5 md:mb-16 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">Pinned on GitHub</p>
+          <h2
+            ref="titleRef"
+            class="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl"
+            :style="{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+              transition: 'opacity 0.45s ease, transform 0.45s ease'
+            }"
+          >
+            Featured work<span class="text-accent">.</span>
+          </h2>
         </div>
-        <h2 
-          ref="titleRef"
-          class="font-cinzel-decorative text-4xl md:text-5xl tracking-wider text-dark mb-4"
-          :style="{ 
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s ease'
-          }"
+        <a
+          href="https://github.com/TechWizard9999?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-accent inline-flex w-fit items-center gap-2 text-sm"
         >
-          SELECTED WORKS
-        </h2>
+          Browse all repositories
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
 
-      <!-- Projects Grid -->
-      <div ref="projectsRef" class="grid md:grid-cols-2 gap-12">
-        <div 
+      <div ref="projectsRef" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <article
           v-for="(project, index) in projects"
-          :key="index"
-          class="group"
-          :style="{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-            transition: `all 0.6s ease ${index * 200}ms`
-          }"
+          :key="project.title"
+          class="project-card group overflow-hidden rounded-2xl border border-white/10 bg-dark-secondary"
+          :class="{ 'is-visible': isVisible }"
+          :style="{ '--project-accent': project.accent, '--project-delay': `${index * 90}ms` }"
         >
-          <!-- Project Image -->
-          <div class="relative overflow-hidden rounded-lg mb-6 bg-gradient-to-br aspect-video border border-dark/5 shadow-inner" :class="project.gradientClass">
-            <div class="absolute inset-0 flex items-center justify-center">
-              <!-- Project Visual -->
-              <img 
-                v-if="project.useImage" 
-                :src="project.imageSrc" 
-                :alt="project.title"
-                class="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div v-else class="project-visual" v-html="project.visual"></div>
+          <div class="project-cover relative flex h-52 flex-col justify-between overflow-hidden p-5 md:h-56">
+            <div class="project-cover-grid pointer-events-none absolute inset-0"></div>
+            <div class="relative z-10 flex items-center justify-between gap-3">
+              <span class="rounded-full border border-white/10 bg-dark/70 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-[#c9d1d9]">
+                {{ project.kind }}
+              </span>
+              <span class="font-mono text-xs text-cool-gray">{{ project.language }}</span>
             </div>
-            <!-- Overlay Info on Hover -->
-            <div class="absolute inset-0 bg-dark/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
-              <p class="text-white/80 font-cinzel text-sm leading-relaxed">
-                {{ project.hoverInfo }}
-              </p>
+            <div class="relative z-10 flex items-end justify-between gap-4">
+              <span class="project-mark font-display text-5xl font-semibold tracking-tight md:text-6xl">{{ project.mark }}</span>
+              <span class="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-cool-gray">{{ project.category }}</span>
             </div>
           </div>
 
-          <!-- Project Info -->
-          <div class="flex items-center justify-between mb-3">
-             <h3 class="font-cinzel text-xl tracking-wide text-dark uppercase font-bold">
+          <div class="p-6 md:p-7">
+            <h3 class="mb-3 font-display text-xl font-semibold text-white md:text-2xl">
               {{ project.title }}
             </h3>
-            <span class="text-[10px] text-cool-gray/80 tracking-widest uppercase border border-cool-gray/20 px-2 py-1">{{ project.dates }}</span>
-          </div>
-         
-          <p class="text-sm text-cool-gray mb-4 leading-relaxed font-light">
-             <span class="text-bronze font-bold mr-1">✦</span>
-             <span v-html="project.description"></span>
-          </p>
+            <p class="mb-5 text-sm leading-relaxed text-cool-gray">
+              {{ project.description }}
+            </p>
 
-          <!-- Tech Stack -->
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span 
-              v-for="tech in project.tech"
-              :key="tech"
-              class="px-2 py-1 text-[10px] tracking-wider uppercase border border-dark/10 text-dark/60 bg-white"
-            >
-              {{ tech }}
-            </span>
-          </div>
+            <div class="mb-6 flex flex-wrap gap-2">
+              <span
+                v-for="technology in project.technologies"
+                :key="technology"
+                class="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] tracking-wide text-[#c9d1d9]"
+              >
+                {{ technology }}
+              </span>
+            </div>
 
-          <!-- Links -->
-          <div class="flex gap-4 pt-4 border-t border-dark/5">
-            <a 
-              v-if="project.github"
-              :href="project.github" 
+            <a
+              :href="project.github"
               target="_blank"
-              class="flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-bronze hover:text-dark transition-colors font-bold"
+              rel="noopener noreferrer"
+              :aria-label="`Open ${project.title} on GitHub`"
+              class="inline-flex items-center gap-2 border-t border-white/10 pt-4 text-sm font-semibold text-accent transition-colors duration-200 hover:text-accent-light"
             >
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-              GitHub <span>→</span>
-            </a>
-            <a 
-              v-if="project.live"
-              :href="project.live" 
-              target="_blank"
-              class="flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-dark/60 hover:text-bronze transition-colors font-bold"
-            >
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              Live Demo <span>→</span>
+              View on GitHub
+              <span aria-hidden="true">↗</span>
             </a>
           </div>
-        </div>
+        </article>
       </div>
-
     </div>
   </section>
 </template>
@@ -132,46 +100,126 @@ onMounted(() => {
         isVisible.value = true
       }
     },
-    { threshold: 0.1 }
+    { threshold: 0.08 }
   )
 })
 
 const projects = [
   {
-    title: 'ConnectExpress',
-    gradientClass: 'from-[#1a2a3a] to-[#0d1520]',
-    useImage: true,
-    imageSrc: '/images/connect-express-graph.png',
-    visual: '',
-    dates: 'Oct 2024 - Dec 2024',
-    description: 'Designed a <strong>smart railway route finder</strong> using <strong>machine learning</strong>. Implemented <strong>risk assessment</strong> with <strong>85% accuracy</strong> and a <strong>scalable Redis caching</strong> system handling <strong>10k+ concurrent queries</strong>.',
-    hoverInfo: 'Smart railway route finder using ML & path optimization algorithms.',
-    tech: ['Next.js', 'Node.js', 'Express.js', 'MongoDB', 'Python (ML)'],
-    github: 'https://github.com/TechWizard9999/Connect-Express',
-    live: null
+    title: 'NVIDIA DSX · NICo',
+    mark: 'NICo',
+    kind: 'Open-source contribution',
+    category: 'AI infrastructure',
+    language: 'Rust',
+    accent: '#79C0FF',
+    description: 'Shipped CLI features and API fixes for NVIDIA DSX’s hardware lifecycle and multitenant networking controller.',
+    technologies: ['Rust', 'CLI', 'Infrastructure'],
+    github: 'https://github.com/TechWizard9999/infra-controller'
   },
   {
-    title: 'FarmChain',
-    gradientClass: 'from-[#1a2a1a] to-[#0d150d]',
-    useImage: true,
-    imageSrc: '/images/farmchain-screenshot.jpg',
-    visual: '',
-    dates: 'Dec 2024 - Jan 2025',
-    description: 'Architected a <strong>blockchain supply-chain platform</strong> with <strong>GPS tracking</strong> and <strong>on-chain verification</strong>. Designed a <strong>distributed traceability system</strong> using <strong>GraphQL</strong> and <strong>Bull (Redis queues)</strong>.',
-    hoverInfo: 'Blockchain-based supply chain management with real-time verification.',
-    tech: ['Next.js', 'GraphQL', 'Solidity', 'IPFS', 'Polygon', 'Redis'],
-    github: 'https://github.com/TechWizard9999/Farm-Chain',
-    live: 'https://farm-chain-myrepo.vercel.app/'
+    title: 'Jarvis',
+    mark: 'J.',
+    kind: 'Personal project',
+    category: 'Developer automation',
+    language: 'TypeScript',
+    accent: '#58A6FF',
+    description: 'A local workflow that investigates RTK issues, reproduces them, verifies fixes, and prepares draft pull requests.',
+    technologies: ['TypeScript', 'AI agents', 'Automation'],
+    github: 'https://github.com/TechWizard9999/Jarvis'
+  },
+  {
+    title: 'PinchTab',
+    mark: 'PT',
+    kind: 'Open-source fork',
+    category: 'Browser automation',
+    language: 'Go',
+    accent: '#A5D6FF',
+    description: 'Contributed to a browser automation bridge for AI agents, with a Go HTTP API and multi-instance orchestration.',
+    technologies: ['Go', 'HTTP API', 'Browser automation'],
+    github: 'https://github.com/TechWizard9999/pinchtab'
+  },
+  {
+    title: 'RTK',
+    mark: 'RTK',
+    kind: 'Open-source fork',
+    category: 'Agent tooling',
+    language: 'Rust',
+    accent: '#388BFD',
+    description: 'Resolved CLI proxy and agent-hook issues in a developer tool that reduces LLM token usage by 60–90%.',
+    technologies: ['Rust', 'CLI', 'Agent hooks'],
+    github: 'https://github.com/TechWizard9999/rtk'
+  },
+  {
+    title: 'ConnectExpress',
+    mark: 'CX',
+    kind: 'Personal project',
+    category: 'Route planning',
+    language: 'C++ · JavaScript',
+    accent: '#79C0FF',
+    description: 'Built a multi-leg railway route finder with a two-pass C++ connection matcher, delay prediction at ~85% accuracy, and Redis caching that cut peak response time by ~40%.',
+    technologies: ['Next.js', 'Node.js', 'C++', 'Python', 'Redis'],
+    github: 'https://github.com/TechWizard9999/Connect-Express'
+  },
+  {
+    title: 'Meta EDU',
+    mark: 'EDU',
+    kind: 'Hackathon project',
+    category: 'AR / VR education',
+    language: 'JavaScript',
+    accent: '#A5D6FF',
+    description: 'An AR/VR education project built on Aptos and developed for the SuperMove Tour DAppathon.',
+    technologies: ['Aptos', 'AR / VR', 'JavaScript'],
+    github: 'https://github.com/TechWizard9999/Meta-Edu-Aptos'
   }
 ]
 </script>
 
 <style scoped>
-.project-visual {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 450ms ease var(--project-delay),
+    transform 450ms ease var(--project-delay),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.project-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card.is-visible:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--project-accent) 42%, transparent);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.project-cover {
+  background:
+    radial-gradient(ellipse at 75% 15%, color-mix(in srgb, var(--project-accent) 18%, transparent), transparent 55%),
+    linear-gradient(135deg, #161b22, #0d1117);
+}
+
+.project-cover-grid {
+  background-image:
+    linear-gradient(rgba(139, 148, 158, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 148, 158, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 100%);
+}
+
+.project-mark {
+  color: var(--project-accent);
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--project-accent) 35%, transparent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 </style>

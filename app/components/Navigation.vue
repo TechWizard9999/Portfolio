@@ -1,21 +1,22 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-30 py-6 px-8">
-    <div class="max-w-7xl mx-auto flex justify-center">
-      <ul class="flex items-center gap-8 md:gap-12 font-cinzel text-sm tracking-widest uppercase">
+  <nav aria-label="Main navigation" class="fixed inset-x-0 top-0 z-30 border-b border-white/5 bg-dark/80 px-3 py-3 backdrop-blur-xl sm:px-6">
+    <div class="mx-auto w-full min-w-0 max-w-6xl">
+      <ul class="nav-links flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 whitespace-nowrap font-display text-[10px] uppercase tracking-[0.1em] sm:gap-x-5 md:flex-nowrap md:gap-8 md:text-xs">
         <li v-for="item in navItems" :key="item.href">
           <a
             :href="item.href"
+            :aria-current="activeSection === item.href.slice(1) ? 'location' : undefined"
             :class="[
-              'transition-colors duration-300 relative group',
+              'relative transition-colors duration-200 group',
               activeSection === item.href.replace('#', '') 
-                ? 'text-bronze' 
-                : 'text-cool-gray hover:text-bronze'
+                ? 'text-accent'
+                : 'text-cool-gray hover:text-white'
             ]"
           >
             {{ item.label }}
             <span 
               :class="[
-                'absolute -bottom-1 left-0 h-px bg-bronze transition-all duration-300',
+                'absolute -bottom-1 left-0 h-px bg-accent transition-all duration-200',
                 activeSection === item.href.replace('#', '') ? 'w-full' : 'w-0 group-hover:w-full'
               ]"
             ></span>
@@ -34,7 +35,7 @@ const navItems = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Achievements', href: '#principles' },
-  { label: 'Library', href: '#library' },
+  { label: 'Open source', href: '#opensource' },
   { label: 'Contact', href: '#contact' }
 ]
 
@@ -55,7 +56,7 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
 })
 

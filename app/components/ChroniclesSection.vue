@@ -1,19 +1,16 @@
 <template>
-  <section id="experience" class="section-light py-24 relative">
-    <!-- Greek Key Border Top -->
-    <div class="greek-key-border-top"></div>
-
+  <section id="experience" class="section-dark relative py-24">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Section Header -->
       <div class="text-center mb-16">
         <div class="inline-block mb-4">
-          <svg class="w-12 h-12 mx-auto text-bronze/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <svg class="mx-auto h-12 w-12 text-accent/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 6v6l4 2"/>
           </svg>
         </div>
         <h2 
-          class="font-cinzel-decorative text-4xl md:text-5xl tracking-wider text-dark mb-4"
+          class="mb-4 font-display text-4xl tracking-tight text-white md:text-5xl"
           :style="{ 
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -24,40 +21,34 @@
         </h2>
       </div>
 
-      <!-- Timeline Container -->
       <div ref="chroniclesRef" class="relative">
-        <!-- Roman Column on Left -->
-        <div class="absolute left-0 top-0 bottom-0 w-16 hidden md:block">
-          <div class="roman-column h-full"></div>
-        </div>
-
-        <!-- Experience Items -->
+        <div class="absolute bottom-0 left-6 top-0 hidden w-px bg-accent/20 md:block"></div>
         <div class="md:pl-24 space-y-16">
           <div 
             v-for="(exp, index) in experiences"
             :key="index"
-            class="relative group"
+            class="group relative"
             :style="{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
               transition: `all 0.6s ease ${index * 200}ms`
             }"
           >
-             <!-- Hover Highlight Background -->
-            <div class="absolute -inset-6 bg-bronze/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            <span class="absolute -left-20 top-2 hidden h-3 w-3 rounded-full border-2 border-accent bg-dark md:block"></span>
+            <div class="pointer-events-none absolute -inset-y-2 inset-x-0 -z-10 rounded-xl bg-accent/[0.035] opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
 
             <!-- Company & Date -->
             <div class="flex flex-wrap items-start justify-between mb-1">
-              <h3 class="font-cinzel text-2xl md:text-3xl tracking-wide text-[#1a1a1a] uppercase font-bold">
+              <h3 class="font-display text-2xl font-semibold tracking-tight text-white md:text-3xl">
                 {{ exp.company }}
               </h3>
-              <span class="font-inter text-sm text-bronze tracking-wider font-medium">
+              <span class="font-mono text-xs text-accent tracking-wide">
                 {{ exp.date }}
               </span>
             </div>
 
             <!-- Role -->
-            <p class="font-inter text-sm tracking-[0.15em] text-[#555] uppercase mb-6">
+            <p class="mb-6 font-mono text-xs uppercase tracking-[0.12em] text-cool-gray">
               {{ exp.title }}
             </p>
 
@@ -66,9 +57,9 @@
               <li 
                 v-for="(point, pIndex) in exp.points"
                 :key="pIndex"
-                class="flex items-start gap-3 text-[#333] text-sm leading-relaxed"
+                class="flex items-start gap-3 text-sm leading-relaxed text-[#c9d1d9]"
               >
-                <span class="text-bronze mt-1.5 text-[10px]">♦</span>
+                <span class="mt-1.5 text-[10px] text-accent">•</span>
                 <span v-html="point"></span>
               </li>
             </ul>
@@ -78,7 +69,7 @@
               <span 
                 v-for="tech in exp.tech"
                 :key="tech"
-                class="px-3 py-1 text-[10px] tracking-wider uppercase border border-dark/20 text-[#333] bg-white/80 font-medium"
+                class="rounded-full border border-white/10 bg-dark-secondary px-3 py-1 font-mono text-[10px] uppercase tracking-wide text-[#c9d1d9]"
               >
                 {{ tech }}
               </span>
@@ -87,7 +78,7 @@
 
           <!-- Education -->
           <div 
-            class="relative pt-8 border-t border-bronze/20"
+            class="group relative border-t border-white/10 pt-8"
             :style="{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
@@ -95,72 +86,40 @@
             }"
           >
             <!-- Hover Highlight Background -->
-            <div class="absolute -inset-6 bg-bronze/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+            <div class="pointer-events-none absolute -inset-y-2 inset-x-0 -z-10 rounded-xl bg-accent/[0.035] opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
 
             <div class="flex flex-wrap items-start justify-between mb-2">
-              <h3 class="font-cinzel text-xl md:text-2xl tracking-wide text-[#1a1a1a] uppercase font-semibold">
+              <h3 class="font-display text-xl font-semibold tracking-tight text-white md:text-2xl">
                 Education
               </h3>
-              <span class="font-inter text-sm text-[#4a4a4a] tracking-wider">
-                Nov 2022 — Present
+              <span class="font-mono text-xs tracking-wide text-cool-gray">
+                Nov 2022 — June 2026
               </span>
             </div>
 
-            <div class="flex items-center gap-2 mb-4">
-              <p class="font-inter text-xs tracking-[0.2em] text-bronze uppercase font-bold">
+            <div class="mb-4 flex flex-wrap items-center gap-2">
+              <p class="font-mono text-xs font-semibold uppercase tracking-[0.12em] text-accent">
                 Indian Institute of Information Technology, Lucknow
               </p>
-              <span class="text-[#666]">•</span>
-              <p class="font-inter text-xs tracking-wider text-[#4a4a4a] uppercase">Uttar Pradesh, India</p>
+              <span class="text-cool-gray">•</span>
+              <p class="font-mono text-xs uppercase tracking-wide text-cool-gray">Uttar Pradesh, India</p>
             </div>
 
             <ul class="space-y-3 mb-6">
-              <li class="flex items-start gap-3 text-[#333] text-sm leading-relaxed">
-                <span class="text-bronze mt-1.5 text-[10px]">♦</span>
+              <li class="flex items-start gap-3 text-sm leading-relaxed text-[#c9d1d9]">
+                <span class="mt-1.5 text-[10px] text-accent">•</span>
                 <span><strong>Bachelor of Technology</strong> — Computer Science and Business</span>
               </li>
-              <li class="flex items-start gap-3 text-[#333] text-sm leading-relaxed">
-                <span class="text-bronze mt-1.5 text-[10px]">♦</span>
-                <span><strong>CGPA: 8.40</strong></span>
-              </li>
-              <li class="flex items-start gap-3 text-[#333] text-sm leading-relaxed">
-                <span class="text-bronze mt-1.5 text-[10px]">♦</span>
-                <span>Coursework: Database Management System, Operating System, Object-Oriented Programming, Data Structures</span>
+              <li class="flex items-start gap-3 text-sm leading-relaxed text-[#c9d1d9]">
+                <span class="mt-1.5 text-[10px] text-accent">•</span>
+                <span><strong>CGPA: 8.5</strong></span>
               </li>
             </ul>
-
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 text-[10px] tracking-wider uppercase border border-dark/20 text-[#333] bg-white/80 font-medium">OOPs</span>
-              <span class="px-3 py-1 text-[10px] tracking-wider uppercase border border-dark/20 text-[#333] bg-white/80 font-medium">Data Structures</span>
-              <span class="px-3 py-1 text-[10px] tracking-wider uppercase border border-dark/20 text-[#333] bg-white/80 font-medium">DBMS</span>
-              <span class="px-3 py-1 text-[10px] tracking-wider uppercase border border-dark/20 text-[#333] bg-white/80 font-medium">Operating Systems</span>
-            </div>
-          </div>
-
-          <!-- Started Journey -->
-          <div 
-            class="relative pt-8 border-t border-bronze/20"
-            :style="{
-              opacity: isVisible ? 1 : 0,
-              transition: 'all 0.6s ease 600ms'
-            }"
-          >
-            <h3 class="font-cinzel text-xl tracking-wide text-[#1a1a1a] uppercase mb-2 font-semibold">
-              Started Coding Journey
-            </h3>
-            <span class="font-inter text-sm text-[#4a4a4a] tracking-wider">
-              NOV 2022
-            </span>
-            <p class="mt-4 italic text-[#444] text-sm">
-              "If one does not know to which port one is sailing, no wind is favorable." — Seneca
-            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Greek Key Border Bottom -->
-    <div class="greek-key-border-bottom"></div>
   </section>
 </template>
 
@@ -190,9 +149,10 @@ const experiences = [
     location: 'Noida, India',
     date: 'Aug 2026 — Present',
     points: [
-      'Joined Microsoft as a full-time engineer in August 2026.'
+      'Built <strong>TestIQ</strong>, an AI-powered natural-language testing framework using LangGraph, LangChain, and Playwright. It runs daily CI/CD tests across three productivity apps and reduced manual testing effort by <strong>80%</strong>.',
+      'Developed <strong>BugPilot</strong>, an autonomous agent for reproducing, fixing, and validating UI bugs. Analyzed <strong>600+ bugs</strong>, delivered <strong>450+ merged PRs</strong>, and added video analysis for flicker and jitter detection.'
     ],
-    tech: []
+    tech: ['LangGraph', 'LangChain', 'Playwright', 'CI/CD']
   },
   {
     title: 'Software Engineering Intern',
@@ -200,10 +160,11 @@ const experiences = [
     location: 'Bangalore, India',
     date: 'Dec 2025 — Jul 2026',
     points: [
-      'Implemented <strong>rate limiting</strong> at both <strong>application level</strong> and <strong>KONG Gateway</strong> to optimize the claims processing pipeline, prevent API abuse, and improve system reliability.',
-      'Worked on the <strong>customer claims page</strong>, fixing production bugs and designing <strong>state machines</strong> for insurance workflows to automate approval-stage transitions and improve end-user experience.'
+      'Extended the claims workflow to support <strong>General Insurance</strong> and <strong>Life Insurance</strong>, and structured frontend state with Redux.',
+      'Implemented rate limiting at the application level and <strong>KONG Gateway</strong> to prevent API abuse and improve system reliability.',
+      'Developed a KYC and fraud-detection flow with the <strong>Spectra API</strong>, improving classification accuracy by <strong>27%</strong>.'
     ],
-    tech: ['Node.js', 'KONG', 'State Machines', 'React']
+    tech: ['Node.js', 'Redux', 'KONG Gateway', 'Spectra API']
   },
   {
     title: 'Software Engineering Intern',
@@ -218,51 +179,3 @@ const experiences = [
   },
 ]
 </script>
-
-<style scoped>
-.roman-column {
-  background: linear-gradient(90deg, 
-    #d4d4d4 0%, 
-    #f5f5f5 20%, 
-    #e8e8e8 40%, 
-    #d4d4d4 60%, 
-    #c4c4c4 80%, 
-    #d4d4d4 100%
-  );
-  border-radius: 4px 4px 0 0;
-  position: relative;
-  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-}
-
-.roman-column::before,
-.roman-column::after {
-  content: '';
-  position: absolute;
-  left: -8px;
-  right: -8px;
-  height: 24px;
-  background: linear-gradient(90deg, #b4b4b4 0%, #e8e8e8 20%, #d4d4d4 50%, #e8e8e8 80%, #b4b4b4 100%);
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.roman-column::before { top: 0; }
-.roman-column::after { bottom: 0; }
-
-.greek-key-border-top,
-.greek-key-border-bottom {
-  height: 24px;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 20px,
-    rgba(0,0,0,0.05) 20px,
-    rgba(0,0,0,0.05) 40px
-  );
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-.greek-key-border-top { top: 0; }
-.greek-key-border-bottom { bottom: 0; }
-</style>

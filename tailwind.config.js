@@ -12,24 +12,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        'dark': '#101010',
-        'dark-secondary': '#1a1a1a',
-        'light': '#F5F5F0',
-        'light-secondary': '#E8E8E3',
-        'bronze': '#CD7F32',
-        'bronze-light': '#D4A574',
-        'bronze-dark': '#A66828',
-        'cool-gray': '#9CA3AF',
-        'blue-glow': 'rgba(59, 130, 246, 0.3)'
+        'dark': '#0D1117',
+        'dark-secondary': '#161B22',
+        'light': '#0D1117',
+        'light-secondary': '#161B22',
+        'accent': '#58A6FF',
+        'accent-light': '#79C0FF',
+        'accent-dark': '#1F6FEB',
+        'cool-gray': '#8B949E',
+        'blue-glow': 'rgba(88, 166, 255, 0.2)'
       },
       fontFamily: {
-        'cinzel': ['"Cinzel"', 'serif'],
-        'cinzel-decorative': ['"Cinzel Decorative"', 'serif'],
-        'inter': ['"Inter"', 'sans-serif']
+        'cinzel': ['"Space Grotesk"', 'sans-serif'],
+        'cinzel-decorative': ['"Space Grotesk"', 'sans-serif'],
+        'display': ['"Space Grotesk"', 'sans-serif'],
+        'inter': ['"Inter"', 'sans-serif'],
+        'mono': ['"JetBrains Mono"', 'monospace']
       },
       letterSpacing: {
-        'ultra-wide': '0.3em',
-        'super-wide': '0.5em'
+        'ultra-wide': '0.18em',
+        'super-wide': '0.32em'
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
