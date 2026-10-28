@@ -1,76 +1,23 @@
-# Nuxt Minimal Starter
+# Roopesh S — Portfolio
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A personal portfolio built with Nuxt 4, Vue, TypeScript, and Tailwind CSS. It highlights professional experience, skills, featured GitHub projects, open-source contributions, achievements, and contact links.
 
-## Setup
+## Development
 
-Make sure to install dependencies:
+Install dependencies and start the local development server:
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
 
-Build the application for production:
+Build and preview the production application:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
 pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# Portfolio
+The production site is deployed from the `main` branch through Vercel.
